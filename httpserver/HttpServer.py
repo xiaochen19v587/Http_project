@@ -1,9 +1,7 @@
 """
 Aid httpserver v3.0
 """
-
 from socket import *
-import sys
 from threading import Thread
 from httpserver.config import *
 import re
