@@ -52,16 +52,17 @@ class HTTPServer(object):
         while True:
             connfd, addr = self.sockfd.accept()
             print("Connect from", addr)
-            client = Thread(target=self.handle, args=(connfd,))
+            client = Thread(target=self.handle, args=(connfd, addr))
             client.setDaemon(True)
             client.start()
 
     # 　处理具体的客户端请求
-    def handle(self, connfd):
+    def handle(self, connfd, addr):
         request = connfd.recv(4096).decode()
         pattern = r"(?P<method>[A-Z]+)\s+(?P<info>/\S*)"
         try:
             env = re.match(pattern, request).groupdict()
+            print(addr, ':', env['info'])
         except:
             connfd.close()
             return
