@@ -1,7 +1,6 @@
 """
 模拟网站后端应用程序工作
 """
-
 from socket import *
 import json
 from webframe.settings import *  # 配置模块
